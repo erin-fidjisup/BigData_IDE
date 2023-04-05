@@ -17,8 +17,8 @@ Installation de child_process et express
 Une fois que Node.js est installé, vous pouvez installer les bibliothèques nécessaires pour faire fonctionner l'application en utilisant npm (Node Package Manager). Pour cela, ouvrez un terminal ou une invite de commande et exécutez les commandes suivantes :
 
 
-`npm install child_process
-npm install express`
+`npm install child_process`
+`npm install express`
 
 Utilisation
 Pour utiliser l'application, veuillez suivre les étapes suivantes :
