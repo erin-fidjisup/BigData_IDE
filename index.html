@@ -9,6 +9,37 @@
 <body>
 	<h1>📊 Projet CHU Dashboard 📊</h1>
 
+    <div name="SelectCSVDeces">
+        <h3>Selectionner un CSV a intégrer a la BDD</h3>
+        <form id="SelectCSVDeces">
+            <label for="paramCSV">Fichier CSV:</label>
+            <input type="text" id="paramCSV" name="paramCSV">
+            <label for="paramTab">Table BDD :</label>
+            <input type="text" id="paramTab" name="paramTab">
+            <input type="submit" value="Enregistrer">
+        </form>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#SelectCSVDeces').submit(function(event) {
+                event.preventDefault();
+                
+
+                let paramCSV = $('#paramCSV').val();
+                const paramTab = $('#paramTab').val();
+                
+                $.ajax({
+                    url: '/SelectCSVDeces',
+                    type: 'POST',
+                    data: {paramCSV: paramCSV, paramTab : paramTab},
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+
     <div name="TotalConsultPeriode">
         <h3>Taux de consultation des patients en France sur une période de temps Y</h3>
         <p>Définissez l'intervalle de date souhaitée : </p>
