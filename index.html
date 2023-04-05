@@ -42,6 +42,117 @@
 	<h1>📊 Projet CHU Dashboard 📊</h1>
 
 
+    <div name="SelectCSVDeces">
+        <h3>Selectionner un CSV a intégrer a la BDD</h3>
+        <form id="SelectCSVDeces">
+            <label for="paramCSV">Fichier CSV:</label>
+            <input type="text" id="paramCSV" name="paramCSV">
+            <label for="paramTab">Table BDD :</label>
+            <input type="text" id="paramTab" name="paramTab">
+            <input type="submit" value="Enregistrer">
+        </form>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#SelectCSVDeces').submit(function(event) {
+                event.preventDefault();
+                
+
+                let paramCSV = $('#paramCSV').val();
+                const paramTab = $('#paramTab').val();
+                
+                $.ajax({
+                    url: '/SelectCSVDeces',
+                    type: 'POST',
+                    data: {paramCSV: paramCSV, paramTab : paramTab},
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <div name="TotalConsultPeriode">
+        <h3>Taux de consultation des patients en France sur une période de temps Y</h3>
+        <p>Définissez l'intervalle de date souhaitée : </p>
+        <form id="TotalConsultPeriode">
+            <label for="param1">Date 1 : </label>
+            <input type="date" id="param1" name="param1">
+            <label for="param2">Date 2:</label>
+            <input type="date" id="param2" name="param2">
+            <input type="submit" value="Lancer">
+        </form>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#TotalConsultPeriode').submit(function(event) {
+                event.preventDefault();
+
+                const param1 = $('#param1').val();
+                const param2 = $('#param2').val();
+                console.log("param" + param1);
+                $.ajax({
+                    url: '/TotalConsultPeriode',
+                    type: 'POST',
+                    data: {param1: param1, param2: param2},
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <div name="TotalConsultDiagPeriode">
+        <h3>Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</h3>
+        <form id="TotalConsultDiagPeriode">
+            <label for="diag1">Recherche de diagnostic : </label>
+            <input type="text" id="diag1" name="diag1">
+            <input type="submit" value="Lancer">
+        </form>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#TotalConsultDiagPeriode').submit(function(event) {
+                event.preventDefault();
+
+                const diag1 = $('#diag1').val();
+                $.ajax({
+                    url: '/TotalConsultDiagPeriode',
+                    type: 'POST',
+                    data: {diag1: diag1},
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <div name="TotalConsultParProfessionnel">
+        <h3>Taux de consultation par professionnel</h3>
+        <form id="TotalConsultParProfessionnel">
+            <input type="submit" value="Actuliser la recherche">
+        </form>
+        <div id="output"></div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#TotalConsultParProfessionnel').submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: '/TotalConsultParProfessionnel',
+                    type: 'POST',
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+
+
     <div class="output" id="output"></div>
 
 </body>

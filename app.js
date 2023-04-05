@@ -33,6 +33,7 @@ app.get('/style.css', function(req, res) {
 	res.sendFile(__dirname + '/style.css');
   });
 
+
   
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -53,6 +54,36 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });*/
+
+
+//-----------------------------------------------------------------------------------------//
+//Taux de consultation des patients en France sur une période de temps Y
+//-----------------------------------------------------------------------------------------//
+app.post('/SelectCSVDeces', (req, res) => {
+	const paramCSV = req.body.paramCSV;
+	const paramTab = req.body.paramTab;
+  
+	// Validation des paramètres
+   
+	const python = spawn('python', ['./scripts/adapter_deces.py',paramCSV]);
+	
+	//SQL INSERT INTO TABLE
+	//const python = spawn('python', ['./scripts/adapter_deces.py',paramCSV]);
+  
+	python.stdout.on('data', (data) => {
+	  console.log(`stdout: ${data}`);
+	  res.send(data);
+	});
+  
+	python.stderr.on('data', (data) => {
+	  console.error(`stderr: ${data}`);
+	  res.status(500).send(`Erreur: ${data}`);
+	});
+  
+	python.on('close', (code) => {	
+	  console.log(`Le script Python a quitté avec le code ${code}`);
+	});
+  });
 
 
 //-----------------------------------------------------------------------------------------//
