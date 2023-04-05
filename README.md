@@ -4,13 +4,6 @@
 Projet CHU Dashboard Le projet CHU Dashboard est une application web qui permet de visualiser les statistiques d'un hôpital à partir de données brutes.
 
 
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-
-
 
 ## Tech Stack
 
@@ -35,11 +28,11 @@ Node.js child_process express Installation de Node.js Node.js est un environneme
 
 Install my-project with npm
 
-```bash
+`
 
     - npm install child_process 
     - npm install express
-```
+`
 
 Utilisation Pour utiliser l'application, veuillez suivre les étapes suivantes :
 
