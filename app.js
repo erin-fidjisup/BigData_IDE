@@ -7,6 +7,30 @@ const app = express();
 app.get('/style.css', function(req, res) {
 	res.type('text/css');
 	res.sendFile(__dirname + '/style.css');
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Routes
+app.get('/index.html', (req, res) => {
+	res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/Consultation/consult_pro.html', (req, res) => {
+	res.sendFile(__dirname + '/Consultation/consult_pro.html');
+});
+
+app.get('/Consultation/consult_temps.html', (req, res) => {
+	res.sendFile(__dirname + '/Consultation/consult_temps.html');
+});
+
+app.get('/Consultation/consult_diag_temps.html', (req, res) => {
+	res.sendFile(__dirname + '/Consultation/consult_diag_temps.html');
+});
+
+app.get('/style.css', function(req, res) {
+	res.type('text/css');
+	res.sendFile(__dirname + '/style.css');
   });
 
   
@@ -29,12 +53,6 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });*/
-
-// Routes
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html');
-});
-
 
 
 //-----------------------------------------------------------------------------------------//

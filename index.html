@@ -6,89 +6,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/style.css" type="text/css" rel="stylesheet">
 </head>
+
+<header>
+    <nav>
+        <ul class="menu">
+          <li><a href="./index.html">Accueil</a></li>
+          <li class="dropdown">
+            <a href="#"> ‍⚕️ Consultation</a>
+            <ul class="submenu">
+               <li><a href="./Consultation/consult_pro.html">Taux de consultation par professionnel</a></li> 
+               <li><a href="./Consultation/consult_temps.html">Taux de consultation des patients en France sur une période de temps Y</a></li>
+               <li><a href="./Consultation/consult_diag_temps.html">Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🏥 Hospitalisation</a>
+            <ul class="submenu">
+              <li><a href="#">Taux global d'hospitalisation des patients dans une période donnée Y</a></li>
+              <li><a href="#">Taux d'hospitalisation des patients par rapport à des diagnostics sur une période donnée</a></li>
+              <li><a href="#">Taux d'hospitalisation/consultation par sexe, par âge</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">💊 Autre</a>
+            <ul class="submenu">
+              <li><a href="#">Nombre de décès par localisation (région)</a></li>
+              <li><a href="#">Taux global de satisfaction</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      
+</header>
 <body>
 	<h1>📊 Projet CHU Dashboard 📊</h1>
 
-    <div name="TotalConsultPeriode">
-        <h3>Taux de consultation des patients en France sur une période de temps Y</h3>
-        <p>Définissez l'intervalle de date souhaitée : </p>
-        <form id="TotalConsultPeriode">
-            <label for="param1">Date 1 : </label>
-            <input type="date" id="param1" name="param1">
-            <label for="param2">Date 2:</label>
-            <input type="date" id="param2" name="param2">
-            <input type="submit" value="Lancer">
-        </form>
-        
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $('#TotalConsultPeriode').submit(function(event) {
-                event.preventDefault();
-
-                const param1 = $('#param1').val();
-                const param2 = $('#param2').val();
-                console.log("param" + param1);
-                $.ajax({
-                    url: '/TotalConsultPeriode',
-                    type: 'POST',
-                    data: {param1: param1, param2: param2},
-                    success: function(data) {
-                        $('#output').text(data);
-                    }
-                });
-            });
-        </script>
-    </div>
-
-    <div name="TotalConsultDiagPeriode">
-        <h3>Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</h3>
-        <form id="TotalConsultDiagPeriode">
-            <label for="diag1">Recherche de diagnostic : </label>
-            <input type="text" id="diag1" name="diag1">
-            <input type="submit" value="Lancer">
-        </form>
-        
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $('#TotalConsultDiagPeriode').submit(function(event) {
-                event.preventDefault();
-
-                const diag1 = $('#diag1').val();
-                $.ajax({
-                    url: '/TotalConsultDiagPeriode',
-                    type: 'POST',
-                    data: {diag1: diag1},
-                    success: function(data) {
-                        $('#output').text(data);
-                    }
-                });
-            });
-        </script>
-    </div>
-
-    <div name="TotalConsultParProfessionnel">
-        <h3>Taux de consultation par professionnel</h3>
-        <form id="TotalConsultParProfessionnel">
-            <input type="submit" value="Actuliser la recherche">
-        </form>
-        <div id="output"></div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $('#TotalConsultParProfessionnel').submit(function(event) {
-                event.preventDefault();
-
-                $.ajax({
-                    url: '/TotalConsultParProfessionnel',
-                    type: 'POST',
-                    success: function(data) {
-                        $('#output').text(data);
-                    }
-                });
-            });
-        </script>
-    </div>
 
     <div class="output" id="output"></div>
 
 </body>
+
 </html>

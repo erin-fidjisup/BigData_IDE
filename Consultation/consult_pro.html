@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  <link rel="stylesheet" type="text/css" href="/Consultation/style_consult.css">
+  
+  <style>
+    
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 40px 0;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+p{
+   
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+label {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0062cc;
+}
+
+#output {
+    font-size: 18px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    margin: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(2, 252, 2);
+    text-align: center;
+    
+}
+
+
+nav {
+    background-color: #E2E9C0;
+    color: #1E0F1C;
+    height: 3rem;
+    margin: 0%;
+  }
+  
+  .menu a {
+    color: #1E0F1C;
+    display: block;
+    padding: 15px;
+    position: relative;
+    text-decoration: none;
+    border-radius: 15px;
+  }
+  
+  .submenu a {
+    background-color: #7AA95C;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 12px;
+  }
+  
+  .submenu a:hover {
+    background-color: #A7001E;
+  }
+  
+  
+  .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li {
+    margin-right: 20px;
+  }
+  
+  .menu li:last-child {
+    margin-right: 0;
+  }
+  
+
+  .dropdown:hover .submenu {
+    display: block;
+  }
+  
+  .submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+  }
+  
+  .submenu li {
+    margin: 0;
+  }
+  
+
+  
+  </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+              <li><a href="#">Accueil</a></li>
+              <li class="dropdown">
+                <a href="#"> ‍⚕️ Consultation</a>
+                <ul class="submenu">
+                   <li><a href="./Consultation/consult_pro.html">Taux de consultation par professionnel</a></li> 
+                   <li><a href="./Consultation/consult_temps.html">Taux de consultation des patients en France sur une période de temps Y</a></li>
+                   <li><a href="./Consultation/consult_diag_temps.html">Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#">🏥 Hospitalisation</a>
+                <ul class="submenu">
+                  <li><a href="#">Taux global d'hospitalisation des patients dans une période donnée Y</a></li>
+                  <li><a href="#">Taux d'hospitalisation des patients par rapport à des diagnostics sur une période donnée</a></li>
+                  <li><a href="#">Taux d'hospitalisation/consultation par sexe, par âge</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#">💊 Autre</a>
+                <ul class="submenu">
+                  <li><a href="#">Nombre de décès par localisation (région)</a></li>
+                  <li><a href="#">Taux global de satisfaction</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"> 📊 Mes graphiques</a>
+              </li>
+              
+            </ul>
+          </nav>
+    </header>
+    <div name="TotalConsultParProfessionnel">
+        <h3>Taux de consultation par professionnel</h3>
+        <form id="TotalConsultParProfessionnel">
+            <input type="submit" value="Actuliser la recherche">
+        </form>
+        <div id="output"></div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $('#TotalConsultParProfessionnel').submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: '/TotalConsultParProfessionnel',
+                    type: 'POST',
+                    success: function(data) {
+                        $('#output').text(data);
+                    }
+                });
+            });
+        </script>
+    </div>
+    <div class="output" id="output"></div>
+
+</body>
+</html>
