@@ -12,7 +12,7 @@ app.get('/style.css', function(req, res) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.get('/index.html', (req, res) => {
+app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
 
@@ -33,7 +33,10 @@ app.get('/style.css', function(req, res) {
 	res.sendFile(__dirname + '/style.css');
   });
 
-
+//ROUTES GRAHPIQUES
+  app.get('/Consultation/graph/test.png', (req, res) => {
+	res.sendFile(__dirname + '/Consultation/graph/test.png');
+});
   
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -99,8 +102,7 @@ app.post('/TotalConsultPeriode', (req, res) => {
 
 
   python.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-    res.send(data);
+    res.send(`<img src=./graph/test.png>`);
   });
 
   python.stderr.on('data', (data) => {

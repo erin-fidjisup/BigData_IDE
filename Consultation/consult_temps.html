@@ -164,13 +164,13 @@ nav {
 <header>
     <nav>
         <ul class="menu">
-          <li><a href="#">Accueil</a></li>
+          <li><a href="/">Accueil</a></li>
           <li class="dropdown">
             <a href="#"> ‍⚕️ Consultation</a>
             <ul class="submenu">
-               <li><a href="./Consultation/consult_pro.html">Taux de consultation par professionnel</a></li> 
-               <li><a href="./Consultation/consult_temps.html">Taux de consultation des patients en France sur une période de temps Y</a></li>
-               <li><a href="./Consultation/consult_diag_temps.html">Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</a></li>
+               <li><a href="/Consultation/consult_pro.html">Taux de consultation par professionnel</a></li> 
+               <li><a href="/Consultation/consult_temps.html">Taux de consultation des patients en France sur une période de temps Y</a></li>
+               <li><a href="/Consultation/consult_diag_temps.html">Taux de consultation des patients par rapport à un diagnostic X sur une période de temps Y</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -221,7 +221,7 @@ nav {
                     type: 'POST',
                     data: {param1: param1, param2: param2},
                     success: function(data) {
-                        $('#output').text(data);
+                        $('#output').html(data);
                     }
                 });
             });
